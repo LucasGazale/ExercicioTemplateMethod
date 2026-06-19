@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.IO;
 
 class ComparaUltimaLetra : IComparer<string>
 {
@@ -57,5 +58,25 @@ class Program
 
         Console.WriteLine("\nClasse gerada:");
         Console.WriteLine(gerador.Gerar());
+
+        // 16.3
+        Console.Write("\nNome da classe: ");
+        string nomeClasse = Console.ReadLine();
+
+        Console.Write("Mensagem a ser impressa: ");
+        string mensagem = Console.ReadLine();
+
+        string codigoGerado =
+            "using System;\n\n" +
+            "public class " + nomeClasse + "\n" +
+            "{\n" +
+            "    public static void Main(string[] args)\n" +
+            "    {\n" +
+            "        Console.WriteLine(\"" + mensagem + "\");\n" +
+            "    }\n" +
+            "}\n";
+
+        File.WriteAllText(nomeClasse + ".cs", codigoGerado);
+        Console.WriteLine("Arquivo gerado: " + nomeClasse + ".cs");
     }
 }
